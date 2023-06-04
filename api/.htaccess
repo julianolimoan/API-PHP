@@ -1,0 +1,10 @@
+###################
+## URL Rewriting ##
+###################
+
+
+RewriteEngine on
+
+
+# /api/magasins
+RewriteRule ^magasins$ index.php [L]

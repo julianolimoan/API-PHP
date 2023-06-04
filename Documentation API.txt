@@ -1,0 +1,26 @@
+Cette documentation décrit une API en PHP permettant d'accéder à une liste de magasins et d'effectuer des opérations CRUD sur ces magasins.
+
+L'API est composé de 2 dossiers, un contenant l'API elle même et l'autre un script qui fera appel de cette dernière.
+
+Le dossier contenant le script est composé de 5 fichiers. Un fichier index.php qui est le point d'entrée du script et qui permet via un formulaire,
+d'envoyer les données par la méthode POST.
+Ces données sont ensuite traîtés en cURL qui en fonction de l'action envoyé va faire la requête adaptés a l'API(POST,DELETE,GET,UPDATE).
+Si la réponse de l'API est true alors le résultat est afficher en format JSON sinon une erreur est affiché.
+Dans le cas où la méthode n'est pas un POST, une redirection vers l'index est faite.
+
+
+Le dossier contenant L'API est decomposé  en un modèle MVC. Le point d'entrée, indexp.php de l'api est un dispatcher qui va 
+rediriger les requêtes  qu'il reçoit vers les bonnes méthodes du controller en fonction des paramètres controller et action dans l'url. 
+le fichier .htacces permet la récriture de l'URL en /api/magasins afin de respecter la logique de l'énoncé. le fichier env permet la connexion à 
+la base et le chargement automatique des classes PHP.
+
+Le controller contient un fichier MagasinController qui est une classe fille de Controller.php, ce Controller reçoit une instance de la vue et du modèle du magasin.
+Le controller à différentes méthodes qui vont être éxécutés par le modèle et envoyé a la vue.
+
+Le model contient un fichier MagasinModel qui est une classe fille de Model.php, Ce Model va  hérité d'une instance de connexion afin de pouvoir éxécuté les différentes 
+méthodes que le controller va lui demander ( Add,Get,Update,Delete) 
+
+La vue contient un fichier MagasinView qui est une classe fille de View.php, Cette vue va hérité d'une instance permettant d'afficher une page en fonction de la réponse que va lui 
+envoyer le controller. 
+
+En résumé, l'API suit un modèle MVC et le script est fait de méthode cURL afin d'intérroger l'API.
